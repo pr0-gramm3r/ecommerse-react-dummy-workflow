@@ -11,6 +11,7 @@ import ThemeContext from './context/ThemeContext'
 import NotifyContext from './context/NotifyContext'
 import ShopContext from './context/ShopContext'
 import AuthContext from './context/AuthContext'
+import LangContext from './context/LangContext'
 
 const products = [
   {
@@ -90,9 +91,9 @@ const App = () => {
             <Cart />
           </ShopContext.Provider>
         
-          
-          <Lang />
-        
+          <LangContext.Provider value={{lang, setLang}}>
+            <Lang />
+          </LangContext.Provider>      
           <AuthContext.Provider value={{showlogin, setShowlogin}}>
             <Login />
           </AuthContext.Provider>
@@ -101,7 +102,9 @@ const App = () => {
       </div>
       
       <AuthContext.Provider value={{showlogin, setShowlogin}}>
+      <LangContext.Provider value={{lang, setLang}}>
         <Auth />
+      </LangContext.Provider>
       </AuthContext.Provider>
       
       <div className="main">
