@@ -1,4 +1,9 @@
-import './App.css'
+import { useEffect, useState } from 'react'
+import ThemeContext from './context/ThemeContext'
+import NotifyContext from './context/NotifyContext'
+import ShopContext from './context/ShopContext'
+import AuthContext from './context/AuthContext'
+import LangContext from './context/LangContext'
 import Notify from "./components/Notify"
 import Cart from './components/Cart'
 import Lang from './components/Lang'
@@ -6,12 +11,7 @@ import Login from './components/Login'
 import Card from './components/Card'
 import Theme from "./components/theme"
 import Auth from './components/Auth'
-import { useEffect, useState } from 'react'
-import ThemeContext from './context/ThemeContext'
-import NotifyContext from './context/NotifyContext'
-import ShopContext from './context/ShopContext'
-import AuthContext from './context/AuthContext'
-import LangContext from './context/LangContext'
+import './App.css'
 
 const products = [
   {
