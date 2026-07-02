@@ -5,10 +5,12 @@ import Lang from './components/Lang'
 import Login from './components/Login'
 import Card from './components/Card'
 import Theme from "./components/theme"
+import Auth from './components/Auth'
 import { useEffect, useState } from 'react'
 import ThemeContext from './context/ThemeContext'
 import NotifyContext from './context/NotifyContext'
 import ShopContext from './context/ShopContext'
+import AuthContext from './context/AuthContext'
 
 const products = [
   {
@@ -59,6 +61,8 @@ const App = () => {
   const [theme, setTheme] = useState("light");
   const [msg_no, setMsg_no] = useState(1);
   const [cart_no, setCart_no] = useState(5);
+  const [lang, setLang] = useState("hey Guest, Welcome to the shop!!")
+  const [showlogin, setShowlogin] = useState(false);
 
   useEffect(()=>{
     document.documentElement.setAttribute("data-theme",theme);
@@ -67,23 +71,41 @@ const App = () => {
   return (
     <>    
       <div className="top">
+        
         <div className="left">
+
           <ThemeContext.Provider value={{theme, setTheme}}>
             <Theme />
           </ThemeContext.Provider>
+        
         </div>
+
         <div className="right">
+        
           <NotifyContext.Provider value={{msg_no}}>
-          <Notify />
+            <Notify />
           </NotifyContext.Provider>
+        
           <ShopContext.Provider value={{cart_no}}>
-          <Cart />
+            <Cart />
           </ShopContext.Provider>
+        
+          
           <Lang />
-          <Login />
+        
+          <AuthContext.Provider value={{showlogin, setShowlogin}}>
+            <Login />
+          </AuthContext.Provider>
+        
         </div>
       </div>
+      
+      <AuthContext.Provider value={{showlogin, setShowlogin}}>
+        <Auth />
+      </AuthContext.Provider>
+      
       <div className="main">
+      
         <NotifyContext.Provider value={{msg_no, setMsg_no}}>
         <ShopContext.Provider value={{cart_no, setCart_no}}>
         {products.map((product) => (
