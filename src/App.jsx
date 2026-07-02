@@ -1,10 +1,12 @@
 import './App.css'
-import Theme from "./components/theme"
 import Notify from "./components/Notify"
 import Cart from './components/Cart'
 import Lang from './components/Lang'
 import Login from './components/Login'
 import Card from './components/Card'
+import Theme from "./components/theme"
+import { useEffect, useState } from 'react'
+import ThemeContext from './context/ThemeContext'
 
 const products = [
   {
@@ -49,12 +51,22 @@ const products = [
   },
 ];
 
+
 const App = () => {
+  
+  const [theme, setTheme] = useState("light");
+  
+  useEffect(()=>{
+    document.documentElement.setAttribute("data-theme",theme);
+  },[theme]);
+
   return (
     <>    
       <div className="top">
         <div className="left">
-          <Theme />
+          <ThemeContext.Provider value={{theme, setTheme}}>
+            <Theme />
+          </ThemeContext.Provider>
         </div>
         <div className="right">
           <Notify />

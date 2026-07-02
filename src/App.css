@@ -56,6 +56,10 @@ body{
     color: var(--color-bg-e);
 }
 
+.theme .active{
+    color: var(--color-success);
+}
+
 .notification{
     display: flex;
     align-items: center;
