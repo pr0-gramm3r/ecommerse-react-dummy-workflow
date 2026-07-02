@@ -1,5 +1,9 @@
+import { useContext } from "react";
+import NotifyContext from "../context/NotifyContext";
+
 const Card = ({product}) => {
   const { img, name, rating, reviews, current, past, discount } = product;
+  const {msg_no, setMsg_no} = useContext(NotifyContext);
   return (
     <div className="card">
         <img src={img} alt="Amul" />
@@ -17,7 +21,9 @@ const Card = ({product}) => {
       </div>
       <div className="btn">
         <button>Add to cart</button>
-        <button>Notify Me!</button>
+        <button
+          onClick={()=> setMsg_no(msg_no + 1)}
+          >Notify Me!</button>
       </div>
     </div>
   )

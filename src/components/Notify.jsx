@@ -1,9 +1,12 @@
+import { useContext } from "react"
+import NotifyContext from "../context/NotifyContext"
 
 const Notify = () => {
+  const {msg_no} = useContext(NotifyContext);
   return (
     <div className="notification">
       <i className="fas fa-bell"></i>
-      <p>1</p>
+      <p>{msg_no}</p>
     </div>
   )
 }

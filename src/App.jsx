@@ -7,6 +7,7 @@ import Card from './components/Card'
 import Theme from "./components/theme"
 import { useEffect, useState } from 'react'
 import ThemeContext from './context/ThemeContext'
+import NotifyContext from './context/NotifyContext'
 
 const products = [
   {
@@ -55,7 +56,8 @@ const products = [
 const App = () => {
   
   const [theme, setTheme] = useState("light");
-  
+  const [msg_no, setMsg_no] = useState(1);
+
   useEffect(()=>{
     document.documentElement.setAttribute("data-theme",theme);
   },[theme]);
@@ -69,16 +71,20 @@ const App = () => {
           </ThemeContext.Provider>
         </div>
         <div className="right">
+          <NotifyContext.Provider value={{msg_no, setMsg_no}}>
           <Notify />
+          </NotifyContext.Provider>
           <Cart />
           <Lang />
           <Login />
         </div>
       </div>
       <div className="main">
+        <NotifyContext.Provider value={{msg_no, setMsg_no}}>
         {products.map((product) => (
-        <Card key={product.id} product={product} />
-      ))}
+          <Card key={product.id} product={product} />
+        ))}
+        </NotifyContext.Provider>
 
       </div>
     </>
